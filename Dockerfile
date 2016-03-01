@@ -7,7 +7,7 @@ RUN addgroup mongodb && adduser -D -H -G mongodb mongodb
 RUN apk add --no-cache python gcc g++ git scons && \
     cd /tmp/ && git clone https://github.com/mongodb/mongo.git && \
     cd mongo && git checkout r${MONGO_VERSION} && \
-    scons all --disable-warnings-as-errors && \
+    scons all -j 4 --disable-warnings-as-errors && \
     scons install --prefix /usr && \
     cd / && apk del python gcc g++ git scons && \
     rm -rf /etc/ssl /tmp/* \
