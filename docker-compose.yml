@@ -1,0 +1,35 @@
+mongodb1:
+  hostname: mongodb1
+  image: larsla/mongo-armv7l
+  ports:
+    - "27018:27017"
+    - "28018:28017"
+  restart: unless-stopped
+  environment:
+    REPLICA_SET: "rs"
+
+mongodb2:
+  hostname: mongodb2
+  image: larsla/mongo-armv7l
+  ports:
+    - "27018:27017"
+    - "28018:28017"
+  restart: unless-stopped
+  environment:
+    REPLICA_SET: "rs"
+
+mongodb3:
+  hostname: mongodb3
+  image: larsla/mongo-armv7l
+  ports:
+    - "27018:27017"
+    - "28018:28017"
+  restart: unless-stopped
+  environment:
+    REPLICA_SET: "rs"
+
+mongosetup:
+  image: larsla/mongo-armv7l
+  entrypoint: "/setup_replset.sh"
+  environment:
+    REPLICA_SET: "rs"
