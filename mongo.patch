@@ -12,7 +12,7 @@ index 7e0a82b..f84958e 100644
 +            myenv.ConfError('Compiler does not honor -std=gnu++11')
          if not AddToCFLAGSIfSupported(myenv, '-std=c99'):
              myenv.ConfError("C++11 mode selected for C++ files, but can't enable C99 for C files")
- 
+
 diff --git a/SConstruct b/SConstruct
 index 64c8387..8df6510 100644
 --- a/SConstruct
@@ -137,6 +137,15 @@ index 9b6c35d..2f7503f 100644
      LSS_INLINE int LSS_NAME(sigaction)(int signum,
                                         const struct kernel_sigaction *act,
                                         struct kernel_sigaction *oldact) {
+@@ -2279,7 +2279,7 @@ struct kernel_stat {
+     LSS_INLINE _syscall2(int, fstat64,             int, f,
+                          struct kernel_stat64 *, b)
+     LSS_INLINE _syscall5(int, _llseek,     uint, fd, ulong, hi, ulong, lo,
+-                         loff_t *, res, uint, wh)
++                         off_t *, res, uint, wh)
+ #ifdef __PPC64__
+     LSS_INLINE _syscall6(void*, mmap,              void*, s,
+                          size_t,                   l, int,               p,
 diff --git a/src/third_party/gperftools-2.2/src/config-10gen-linux.h b/src/third_party/gperftools-2.2/src/config-10gen-linux.h
 index 6c3f28b..faa9f51 100644
 --- a/src/third_party/gperftools-2.2/src/config-10gen-linux.h
