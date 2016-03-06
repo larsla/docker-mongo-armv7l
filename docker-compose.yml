@@ -10,10 +10,10 @@ services:
     environment:
       REPLICA_SET: "rs"
       MONGODB_PASS: test
+    volumes:
+      - mongodb1:/data/db
     networks:
-      default:
-        aliases:
-          - mongodb1
+      - mongodb
 
   mongodb2:
     image: larsla/mongo-armv7l
@@ -24,10 +24,10 @@ services:
     environment:
       REPLICA_SET: "rs"
       MONGODB_PASS: test
+    volumes:
+      - mongodb2:/data/db
     networks:
-      default:
-        aliases:
-          - mongodb2
+      - mongodb
 
   mongodb3:
     image: larsla/mongo-armv7l
@@ -38,10 +38,10 @@ services:
     environment:
       REPLICA_SET: "rs"
       MONGODB_PASS: test
+    volumes:
+      - mongodb3:/data/db
     networks:
-      default:
-        aliases:
-          - mongodb3
+      - mongodb
 
   mongosetup:
     image: larsla/mongo-armv7l
@@ -49,3 +49,13 @@ services:
     environment:
       REPLICA_SET: "rs"
       MONGODB_PASS: test
+    networks:
+      - mongodb
+
+volumes:
+  mongodb1:
+  mongodb2:
+  mongodb3:
+
+networks:
+  mongodb:

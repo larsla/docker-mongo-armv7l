@@ -1,6 +1,16 @@
 #!/bin/bash
 set -m
 
+if [ -f /data/db/mongod.lock ]; then
+  echo "Lock file detected.. "
+  mongopid=`pidof mongod`
+  if [ -n "$mongod" ]; then
+    echo "A mongod process is already running. It has pid $mongopid"
+  else
+    rm /data/db/mongod.lock
+  fi
+fi
+
 mongodb_cmd="mongod"
 cmd="$mongodb_cmd --smallfiles --httpinterface --rest"
 if [ "$AUTH" == "yes" ]; then
