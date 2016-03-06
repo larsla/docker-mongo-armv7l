@@ -1,35 +1,51 @@
-mongodb1:
-  hostname: mongodb1
-  image: larsla/mongo-armv7l
-  ports:
-    - "27018:27017"
-    - "28018:28017"
-  restart: unless-stopped
-  environment:
-    REPLICA_SET: "rs"
+version: '2'
 
-mongodb2:
-  hostname: mongodb2
-  image: larsla/mongo-armv7l
-  ports:
-    - "27018:27017"
-    - "28018:28017"
-  restart: unless-stopped
-  environment:
-    REPLICA_SET: "rs"
+services:
+  mongodb1:
+    image: larsla/mongo-armv7l
+    ports:
+      - "27018:27017"
+      - "28018:28017"
+    restart: unless-stopped
+    environment:
+      REPLICA_SET: "rs"
+      MONGODB_PASS: test
+    networks:
+      default:
+        aliases:
+          - mongodb1
 
-mongodb3:
-  hostname: mongodb3
-  image: larsla/mongo-armv7l
-  ports:
-    - "27018:27017"
-    - "28018:28017"
-  restart: unless-stopped
-  environment:
-    REPLICA_SET: "rs"
+  mongodb2:
+    image: larsla/mongo-armv7l
+    ports:
+      - "27018:27017"
+      - "28018:28017"
+    restart: unless-stopped
+    environment:
+      REPLICA_SET: "rs"
+      MONGODB_PASS: test
+    networks:
+      default:
+        aliases:
+          - mongodb2
 
-mongosetup:
-  image: larsla/mongo-armv7l
-  entrypoint: "/setup_replset.sh"
-  environment:
-    REPLICA_SET: "rs"
+  mongodb3:
+    image: larsla/mongo-armv7l
+    ports:
+      - "27018:27017"
+      - "28018:28017"
+    restart: unless-stopped
+    environment:
+      REPLICA_SET: "rs"
+      MONGODB_PASS: test
+    networks:
+      default:
+        aliases:
+          - mongodb3
+
+  mongosetup:
+    image: larsla/mongo-armv7l
+    entrypoint: "/setup_replset.sh"
+    environment:
+      REPLICA_SET: "rs"
+      MONGODB_PASS: test

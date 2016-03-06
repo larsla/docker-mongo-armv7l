@@ -2,7 +2,7 @@
 set -m
 
 mongodb_cmd="mongod"
-cmd="$mongodb_cmd --smallfiles --httpinterface --rest --master"
+cmd="$mongodb_cmd --smallfiles --httpinterface --rest"
 if [ "$AUTH" == "yes" ]; then
   cmd="$cmd --auth"
 fi
