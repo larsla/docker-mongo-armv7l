@@ -49,6 +49,9 @@ services:
     environment:
       REPLICA_SET: "rs"
       MONGODB_PASS: test
+      MONGODB1: "${COMPOSE_PROJECT_NAME}_mongodb1_1"
+      MONGODB2: "${COMPOSE_PROJECT_NAME}_mongodb2_1"
+      MONGODB3: "${COMPOSE_PROJECT_NAME}_mongodb3_1"
     networks:
       - mongodb
 

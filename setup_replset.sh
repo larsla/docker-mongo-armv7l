@@ -1,8 +1,8 @@
 #!/bin/bash
 
-MONGODB1=${MONGODB1:-${COMPOSE_PROJECT_NAME}_mongodb1_1}
-MONGODB2=${MONGODB2:-${COMPOSE_PROJECT_NAME}_mongodb2_1}
-MONGODB3=${MONGODB3:-${COMPOSE_PROJECT_NAME}_mongodb3_1}
+MONGODB1=${MONGODB1:-mongo_mongodb1_1}
+MONGODB2=${MONGODB2:-mongo_mongodb2_1}
+MONGODB3=${MONGODB3:-mongo_mongodb3_1}
 
 echo "Waiting for startup.."
 until curl http://${MONGODB1}:28017/serverStatus\?text\=1 2>&1 | grep uptime | head -1; do
